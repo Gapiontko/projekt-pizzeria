@@ -60,7 +60,10 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
+      thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
 
       console.log('new Product:', thisProduct);
     }
@@ -78,14 +81,24 @@
 
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
-
     }
+
+    getElements(){
+      const thisProduct = this;
+
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+    }
+
     initAccordion(){
       const thisProduct = this;
       console.log(thisProduct);
 
       /* find the clickable trigger (the element that should react to clicking) */
-      const clickableProduct = thisProduct.element.querySelector(select.menuProduct.clickable);
+      const clickableProduct = thisProduct.accordionTrigger;
       console.log(clickableProduct);
 
       /* START: click event listener to trigger */
@@ -117,6 +130,73 @@
 
       /* END: click event listener to trigger */
       });
+    }
+
+
+    initOrderForm(){
+      const thisProduct = this;
+      console.log(thisProduct);
+
+      thisProduct.form.addEventListener('submit', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+
+      for(let input of thisProduct.formInputs){
+        input.addEventListener('change', function(){
+          thisProduct.processOrder();
+        });
+      }
+
+      thisProduct.cartButton.addEventListener('click', function(event){
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+    }
+
+    processOrder(){
+      const thisProduct = this;
+      console.log(thisProduct);
+
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      console.log('formData', formData);
+
+      /* default price */
+      let price = thisProduct.data.price;
+      console.log(price);
+
+      /* START LOOP 1: Iterate through all params of thisProduct */
+      for (let paramID in thisProduct.data.params) {
+        console.log(paramID, thisProduct.data.params[paramID]);
+
+        const param = thisProduct.data.params[paramID];
+
+        /* START LOOP 2: Iterate through all param options */
+        for (let optionID in param.options){
+          console.log(optionID, param.options[optionID]);
+
+          const option = param.options[optionID];
+
+          const optionSelected = formData.hasOwnProperty(paramID) && formData[paramID].indexOf(optionID) > -1;
+
+          /* if a non-default option is checked price must increase */
+          if (optionSelected && !option.default){
+            price += option.price;
+
+          /* if a default option is not checked price must decrease */
+          }else if (!optionSelected && option.default){
+            price -= option.price;
+          }
+
+        /* END LOOP 2 */
+        }
+
+      /* END LOOP 1 */
+      }
+
+      /* put price into thisProduct.priceElem */
+
+      thisProduct.priceElem.textContent = price;
     }
   }
 
