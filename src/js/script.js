@@ -65,7 +65,7 @@
       thisProduct.initOrderForm();
       thisProduct.processOrder();
 
-      console.log('new Product:', thisProduct);
+      //console.log('new Product:', thisProduct);
     }
     renderInMenu(){
       const thisProduct = this;
@@ -96,14 +96,15 @@
 
     initAccordion(){
       const thisProduct = this;
-      console.log(thisProduct);
+      //console.log(thisProduct);
 
       /* find the clickable trigger (the element that should react to clicking) */
       const clickableProduct = thisProduct.accordionTrigger;
-      console.log(clickableProduct);
+      //console.log(clickableProduct);
 
       /* START: click event listener to trigger */
-      clickableProduct.addEventListener('click', function(){console.log('clicked');
+      clickableProduct.addEventListener('click', function(){
+        //console.log('clicked');
 
         /* prevent default action for event */
         event.preventDefault();
@@ -136,7 +137,7 @@
 
     initOrderForm(){
       const thisProduct = this;
-      console.log(thisProduct);
+      //console.log(thisProduct);
 
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
@@ -157,24 +158,24 @@
 
     processOrder(){
       const thisProduct = this;
-      console.log(thisProduct);
+      //console.log(thisProduct);
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      //console.log('formData', formData);
 
       /* default price */
       let price = thisProduct.data.price;
-      console.log(price);
+      //console.log(price);
 
       /* START LOOP 1: Iterate through all params of thisProduct */
       for (let paramID in thisProduct.data.params) {
-        console.log(paramID, thisProduct.data.params[paramID]);
+        //console.log(paramID, thisProduct.data.params[paramID]);
 
         const param = thisProduct.data.params[paramID];
 
         /* START LOOP 2: Iterate through all param options */
         for (let optionID in param.options){
-          console.log(optionID, param.options[optionID]);
+          //console.log(optionID, param.options[optionID]);
 
           const option = param.options[optionID];
 
@@ -192,7 +193,7 @@
           /* find images */
 
           const optionImages = thisProduct.imageWrapper.querySelectorAll('.' + paramID + '-' + optionID);
-          console.log('.' + paramID + '-' + optionID);
+          //console.log('.' + paramID + '-' + optionID);
 
           /* if an option is selcted make image visible */
           if (optionSelected){
@@ -219,10 +220,18 @@
     }
   }
 
+  class AmountWidget{
+    constructor(element){
+      const thisWidget = this;
+      console.log('AmountWidget:', thisWidget);
+      console.log('constructor arguments:', element);
+    }
+  }
+
   const app = {
     initMenu: function () {
       const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
+      //console.log('thisApp.data:', thisApp.data);
 
       for (let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
