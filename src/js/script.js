@@ -192,17 +192,17 @@
           /* find images */
 
           const optionImages = thisProduct.imageWrapper.querySelectorAll('.' + paramID + '-' + optionID);
-          console.log('optionImages:', optionImages);
+          console.log('.' + paramID + '-' + optionID);
 
           /* if an option is selcted make image visible */
           if (optionSelected){
-            for (let image in optionImages){
+            for (let image of optionImages){
               image.classList.add(classNames.menuProduct.imageVisible);
             }
 
           /* otherwise make image invisible */
           } else {
-            for (let image in optionImages){
+            for (let image of optionImages){
               image.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
