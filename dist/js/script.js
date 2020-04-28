@@ -216,7 +216,8 @@
       /* END LOOP 1 */
       }
 
-      /* put price into thisProduct.priceElem */
+      /* put price into thisProduct.priceElem  & multiply price by amount*/
+      price *= thisProduct.amountWidget.value;
 
       thisProduct.priceElem.textContent = price;
     }
@@ -224,6 +225,13 @@
     initAmountWidget(){
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+
+      /* Add addEventListener */
+      thisProduct.amountWidgetElem.addEventListener('updated', function (){
+        thisProduct.processOrder();
+      }
+      );
+
     }
   }
 
@@ -248,6 +256,13 @@
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
 
+    announce(){ //create an instance of the buildin class Event
+      const thisWidget = this;
+
+      const event = new Event ('updated');
+      thisWidget.element.dispatchEvent(event);
+    }
+
     setValue(value){
       const thisWidget = this;
 
@@ -257,12 +272,14 @@
 
       thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
+      thisWidget.announce();
     }
 
     initActions(){
       const thisWidget = this;
       console.log('thisWidget');
 
+      /* Add addEventListeners to the amount widget under every product */
       thisWidget.input.addEventListener('change', function(){
         thisWidget.setValue(thisWidget.input.value);
       });
