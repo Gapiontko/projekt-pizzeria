@@ -170,7 +170,6 @@
       });
     }
 
-
     initOrderForm(){
       const thisProduct = this;
       //console.log(thisProduct);
@@ -277,10 +276,10 @@
       thisWidget.input.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions(event);
-      console.log();
+      //console.log();
 
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor arguments:', element);
+      //console.log('AmountWidget:', thisWidget);
+      //console.log('constructor arguments:', element);
     }
 
     getElements(element){
@@ -316,13 +315,13 @@
 
     initActions(){
       const thisWidget = this;
-      console.log('thisWidget');
+      //console.log('thisWidget');
 
       /* Add addEventListeners to the amount widget under every product */
       thisWidget.input.addEventListener('change', function(){
         thisWidget.setValue(thisWidget.input.value);
       });
-      console.log('changed');
+      //console.log('changed');
 
       thisWidget.linkDecrease.addEventListener('click', function(){
         event.preventDefault();
@@ -343,6 +342,7 @@
       thisCart.ptoducts = [];
 
       thisCart.getElements (element);
+      thisCart.initActions ();
 
       console.log('new cart:', thisCart);
 
@@ -353,7 +353,23 @@
 
       thisCart.dom ={};
 
-      this.dom.wrapper = element;
+      thisCart.dom.wrapper = element;
+
+      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector (select.cart.toggleTrigger);
+    }
+
+    initActions (){
+      const thisCart = this;
+
+      const clickableCart = thisCart.dom.toggleTrigger;
+      console.log(clickableCart);
+
+      clickableCart.addEventListener ('click', function () {
+        //event.preventDefault();
+
+        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+
+      });
     }
   }
 
@@ -384,7 +400,16 @@
       thisApp.initData();
 
       thisApp.initMenu();
+
+      thisApp.initCart();
     },
+
+    initCart: function () {
+      const thisApp = this;
+
+      const cartElem = document.querySelector (select.containerOf.cart);
+      thisApp.cart = new Cart(cartElem);
+    }
   };
 
   app.init();
