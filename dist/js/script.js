@@ -308,7 +308,6 @@
       thisWidget.input.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions(event);
-      //console.log();
 
       //console.log('AmountWidget:', thisWidget);
       //console.log('constructor arguments:', element);
@@ -503,10 +502,11 @@
       };
 
       for (let product of thisCart.products){
-        const productInfo = product.getData;
+        product.getData();
 
-        payload.products.push(productInfo);
+        payload.products.push(product);
       }
+      console.log(payload.products);
 
       const options = {
         method: 'POST',
