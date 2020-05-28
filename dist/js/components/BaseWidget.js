@@ -6,7 +6,7 @@ class BaseWidget {
 
     thisWidget.dom.wrapper = wrapperElem;
 
-    thisWidget.value = initialValue;
+    thisWidget.correctvalue = initialValue;
   }
 
   get value (){
@@ -47,10 +47,6 @@ class BaseWidget {
     thisWidget.dom.wrapper.dispatchEvent(event);
   }
 
-  setValue (value){
-    const thisWidget = this;
-    thisWidget.value = value;
-  }
 }
 
 export default BaseWidget;
