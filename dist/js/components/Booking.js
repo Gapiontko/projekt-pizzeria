@@ -1,4 +1,5 @@
-import {select,templates} from '../settings.js';
+import {settings, select,templates} from '../settings.js';
+import {utils} from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
 import HourPicker from './HourPicker.js';
@@ -9,6 +10,39 @@ class Booking {
 
     thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
+    thisBooking.getData();
+  }
+
+  getData(){
+    const thisBooking = this;
+
+    const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
+
+    const endDateParam = settings.db.EndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
+
+    const params = {
+      booking:[
+        startDateParam,
+        settings.db.EndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate),
+      ],
+      eventsCurrent:[
+        startDateParam,
+        endDateParam,
+        settings.db.notRepeatParam,
+      ],
+      eventsRepeat:[
+        endDateParam,
+        settings.db.repeatParam,
+      ],
+    };
+    console.log('getData params', params);
+
+    const urls = {
+      booking:       settings.db.url + '/' + settings.db.booking + '?' + params.booking.join('&'),
+      eventsCurrent: settings.db.url + '/' + settings.db.event   + '?' + params.eventsCurrent.join('&'),
+      eventsRepeat:  settings.db.url + '/' + settings.db.event   + '?' + params.eventsRepeat.join('&'),
+    };
+    console.log('getData urls', urls);
   }
 
   render(bookingContainer){
@@ -30,8 +64,8 @@ class Booking {
     const thisBooking = this;
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
-    thisBooking.datePicker = new DatePicker(thisBooking.datePicker);
-    thisBooking.hourPicker = new HourPicker(thisBooking.hourPicker);
+    thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
+    thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
   }
 }
 

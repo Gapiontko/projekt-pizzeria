@@ -6,7 +6,7 @@ class BaseWidget {
 
     thisWidget.dom.wrapper = wrapperElem;
 
-    thisWidget.correctvalue = initialValue;
+    thisWidget.correctValue = initialValue;
   }
 
   get value (){

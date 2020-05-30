@@ -111,17 +111,17 @@ class Product {
 
   processOrder(){
     const thisProduct = this;
-    console.log(thisProduct);
+    //console.log(thisProduct);
 
     const formData = utils.serializeFormToObject(thisProduct.form);
-    console.log('formData', formData);
+    //console.log('formData', formData);
 
     /* Empty object thisProduct.params */
     thisProduct.params = {};
 
     /*variable price initially equal to default price */
     let price = thisProduct.data.price;
-    console.log(price);
+    //console.log(price);
 
     /* START LOOP 1: Iterate through all params of thisProduct */
     for (let paramID in thisProduct.data.params) {
