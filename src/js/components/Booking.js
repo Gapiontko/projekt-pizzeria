@@ -18,6 +18,7 @@ class Booking {
     thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.selectTable();
   }
 
   getData() {
@@ -126,13 +127,17 @@ class Booking {
     let allAvailable = false;
 
     if (
-      typeof thisBooking.booked[thisBooking.date] != 'undefined' && typeof thisBooking.booked[thisBooking.date][thisBooking.hour] !=
+      typeof thisBooking.booked[thisBooking.date] == 'undefined' || typeof thisBooking.booked[thisBooking.date][thisBooking.hour] ==
      'undefined'){
       allAvailable = true;
     }
 
     for(let table of thisBooking.dom.tables){
+      table.classList.remove(classNames.booking.tableSelected);
+      thisBooking.tableSelected = null;
+
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
+
       if (!isNaN(tableId)) {
         tableId = parseInt(tableId);
       }
@@ -156,22 +161,21 @@ class Booking {
     for(let table of thisBooking.dom.tables) {
 
       table.addEventListener('click', function() {
-        const tableId = table.getAttribute(settings.booking.tableIdAttribute);
+        const tableId = parseInt(table.getAttribute(settings.booking.tableIdAttribute));
         const tableBooked = table.classList.contains(classNames.booking.tableBooked);
 
-        let tableBookedId = thisBooking.booked[thisBooking.date][thisBooking.hour];
-        if (!isNaN(tableBookedId)) {
-          tableBookedId = parseInt(tableBookedId);
-        } else {
-          //console.log('no events at this time');
-        }
+        if (!tableBooked && !isNaN(tableId)){
 
-        if (!tableBooked){
-          table.classList.add(classNames.booking.tableBooked, classNames.booking.tableSelected);
+          // find old active table and remove active class
+          const tableActive = thisBooking.dom.wrapper.querySelector(select.booking.tableSelected);
+          if(tableActive) tableActive.classList.remove(classNames.booking.tableSelected);
+
+          // add class active to new table
+          table.classList.add(classNames.booking.tableSelected);
           thisBooking.tableSelected = tableId;
           console.log('table selected: ', thisBooking.tableSelected);
-        } else if (tableBooked && tableId != tableBookedId){
-          table.classList.remove(classNames.booking.tableBooked);
+        } else {
+          alert('Table is not empty!');
         }
       });
     }
