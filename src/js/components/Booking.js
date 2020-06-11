@@ -15,6 +15,7 @@ class Booking {
   constructor(bookingContainer) {
     const thisBooking = this;
 
+    thisBooking.reservation = [];
     thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
     thisBooking.getData();
@@ -151,6 +152,34 @@ class Booking {
         table.classList.remove(classNames.booking.tableBooked);
       }
     }
+    thisBooking.rangeSliderColor();
+  }
+  rangeSliderColor() {
+    const thisBooking = this;
+
+    const bookedHours = thisBooking.booked[thisBooking.date];
+    const sliderDataColors = [];
+
+    thisBooking.dom.rangeSlider = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.slider);
+
+    const slider = thisBooking.dom.rangeSlider;
+
+    for (let bookedHour in bookedHours) {
+      const firstOfInterval = ((bookedHour - 12) * 100) / 12;
+      const secondOfInterval = (((bookedHour - 12) + .5) * 100) / 12;
+      if (bookedHour < 24) {
+        if (bookedHours[bookedHour].length <= 1) {
+          sliderDataColors.push('/*' + bookedHour + '*/green ' + firstOfInterval + '%, green ' + secondOfInterval + '%');
+        } else if (bookedHours[bookedHour].length === 2) {
+          sliderDataColors.push('/*' + bookedHour + '*/orange ' + firstOfInterval + '%, orange ' + secondOfInterval + '% ');
+        } else if (bookedHours[bookedHour].length === 3) {
+          sliderDataColors.push('/*' + bookedHour + '*/red ' + firstOfInterval + '%, red ' + secondOfInterval + '%');
+        }
+      }
+    }
+    sliderDataColors.sort();
+    const greenOrangeRedString = sliderDataColors.join();
+    slider.style.background = 'linear-gradient(to right, ' + greenOrangeRedString + ')';
   }
   selectTable() {
     const thisBooking = this;
