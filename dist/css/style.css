@@ -30,7 +30,7 @@
   }
 }
 
-.h1, .product__name, .product__base-price, .page__title {
+.h1, .product__name, .product__base-price, .page__title, .nav-link__subtitle, .hours h2 {
   font-family: "Oswald", sans-serif;
   font-size: 26px;
   font-weight: 500;
@@ -840,5 +840,235 @@ input.error, select.error {
   -ms-flex-pack: justify;
       justify-content: space-between;
   margin: 48px auto;
+}
+
+.homepage-wrapper {
+  margin: 42px auto;
+  padding: 72px 44px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.links-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  height: 121px;
+}
+
+.link-wrapper {
+  -ms-flex: 1 0 45%;
+      flex: 1 0 45%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+}
+
+.link-wrapper__order {
+  margin-right: 4px;
+  background-image: url("../../images/assets/pizza-1.jpg");
+}
+
+.link-wrapper__booking {
+  margin-left: 4px;
+  background-image: url("../../images/assets/pizza-2.jpg");
+}
+
+.link-wrapper :hover h2 {
+  margin: 22px 0 8px 0;
+}
+
+.link-wrapper :hover p {
+  opacity: 1;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+}
+
+.nav-link__subtitle {
+  margin: 40px 0 0 0;
+  transition: margin .3s ease-out;
+}
+
+.nav-link__hidden-subtitle {
+  margin-top: 0;
+  opacity: 0;
+  transition: opacity .3s ease-out;
+}
+
+.hours-wrapper {
+  margin-top: 8px;
+  position: relative;
+  height: 121px;
+  background-color: #ff6b6b;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.hours {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+}
+
+.hours h2 {
+  margin: 22px 0 5px 0;
+  color: #fff;
+}
+
+.hours p {
+  margin-top: 0;
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+/* Carousel */
+.carousel-container {
+  margin: 50px 0 68px 0;
+}
+
+.carousel-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  margin: 100px 0 21px 0;
+  overflow: hidden;
+}
+
+.carousel-image-holder img {
+  object-fit: cover;
+  height: 192px;
+  width: 192px;
+  border-radius: 4px;
+}
+
+.carousel-review-wrapper {
+  height: 192px;
+  margin-left: 48px;
+  width: 100%;
+}
+
+.carousel-review-wrapper .review-title {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.carousel-review-wrapper .review-name {
+  margin-top: 28px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.carousel-dots {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.carousel-dots i {
+  color: #333;
+  margin: 8px;
+  font-size: 10px;
+}
+
+.carousel-dots i.active {
+  color: #b2bec3;
+}
+
+/* Gallery */
+.gallery-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.gal-image-wrapper {
+  margin: 6px;
+  -ms-flex: 0 0 31%;
+      flex: 0 0 31%;
+  height: 192px;
+  min-width: 192px;
+  position: relative;
+}
+
+.gal-image-wrapper img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.icon-overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.icon-overlay i {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 8px;
+  position: relative;
+  transition: color .3s;
+}
+
+.gal-image-wrapper:hover .icon-overlay {
+  opacity: 1;
+}
+
+.icon-overlay .fa-heart:hover {
+  color: #ff6b6b;
+  cursor: pointer;
+}
+
+/* Footer */
+.footer {
+  margin-top: 22px;
+}
+
+.footer a {
+  color: #ff6b6b;
 }
 /*# sourceMappingURL=style.css.map */

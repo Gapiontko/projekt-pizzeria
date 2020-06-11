@@ -1,0 +1,192 @@
+.homepage-wrapper {
+  margin: 42px auto;
+  padding: 72px 44px;
+  background: $color-light;
+  border-radius: $radius;
+}
+
+.links-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 121px;
+}
+
+.link-wrapper {
+  flex: 1 0 45%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: $radius;
+
+  &__order {
+    margin-right: 4px;
+    background-image: url('../../images/assets/pizza-1.jpg');
+  }
+
+  &__booking {
+    margin-left: 4px;
+    background-image: url('../../images/assets/pizza-2.jpg');
+  }
+
+  :hover h2 {
+    margin: 22px 0 8px 0;
+  }
+
+  :hover p {
+    opacity: 1;
+  }
+}
+
+.nav-link {
+  text-decoration: none;
+  color: $color-light;
+  text-align: center;
+
+  &__subtitle {
+    @extend .h1;
+    margin: 40px 0 0 0;
+    transition: margin .3s ease-out;
+  }
+
+  &__hidden-subtitle {
+    margin-top: 0;
+    opacity: 0;
+    transition: opacity .3s ease-out;
+  }
+}
+
+.hours-wrapper {
+  margin-top: 8px;
+  position: relative;
+  height: 121px;
+  background-color: $color-main;
+  border-radius: $radius;
+  text-align: center;
+}
+
+.hours {
+  @include center();
+  height: 100%;
+
+  h2 {
+    @extend .h1;
+    margin: 22px 0 5px 0;
+    color: $color-light;
+  }
+
+  p {
+    margin-top: 0;
+    color: $color-light;
+    font-family: $font-text;
+    font-weight: $font-light;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+}
+
+/* Carousel */
+.carousel-container {
+  margin: 50px 0 68px 0;
+}
+
+.carousel-wrapper {
+  @include flex(row, center, space-between);
+  margin: 100px 0 21px 0;
+  overflow: hidden;
+}
+
+.carousel-image-holder img {
+  object-fit: cover;
+  height: 192px;
+  width: 192px;
+  border-radius: $radius;
+}
+
+.carousel-review-wrapper {
+  height: 192px;
+  margin-left: 48px;
+  width: 100%;
+
+  .review-title {
+    text-transform: uppercase;
+    font-weight: $font-semibold;
+  }
+
+  .review-name {
+    margin-top: 28px;
+    font-style: italic;
+    font-weight: $font-normal;
+  }
+}
+
+.carousel-dots {
+  @include flex(row, center, center);
+
+  i {
+    color: $color-dark;
+    margin: 8px;
+    font-size: 10px;
+
+    &.active {
+      color: #b2bec3;
+    }
+  }
+}
+
+/* Gallery */
+.gallery-wrapper {
+  @include flex(row, center, center);
+  flex-wrap: wrap;
+}
+
+.gal-image-wrapper {
+  margin: 6px;
+  flex: 0 0 31%;
+  height: 192px;
+  min-width: 192px;
+  position: relative;
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: $radius;
+  }
+}
+
+.icon-overlay {
+  @include center();
+  @include flex(row, center, center);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .4);
+  border-radius: $radius;
+  opacity: 0;
+  transition: opacity .3s;
+
+  i {
+    display: inline-block;
+    font-size: 22px;
+    color: $color-light;
+    letter-spacing: 8px;
+    position: relative;
+    transition: color .3s;
+  }
+}
+
+.gal-image-wrapper:hover .icon-overlay {
+  opacity: 1;
+}
+
+.icon-overlay .fa-heart:hover{
+  color: $color-main;
+  cursor: pointer;
+}
+
+/* Footer */
+.footer {
+  margin-top: 22px;
+
+  a {
+    color: $color-main;
+  }
+}
