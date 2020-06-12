@@ -222,10 +222,7 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": [
-        "bread",
-        "lemonWater"
-      ]
+      "starters": ["bread", "lemonWater"]
     },
     {
       "id": 3,
@@ -235,10 +232,7 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": [
-        "bread",
-        "lemonWater"
-      ]
+      "starters": ["bread", "lemonWater"]
     },
     {
       "id": 4,
@@ -258,9 +252,7 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": [
-        "lemonWater"
-      ]
+      "starters": ["lemonWater"]
     }
   ],
   "booking": [
@@ -272,54 +264,6 @@
       "duration": 4,
       "ppl": 3,
       "starters": []
-    },
-    {
-      "date": "2020-06-03",
-      "hour": "16:30",
-      "table": [],
-      "ppl": 2,
-      "duration": 2,
-      "starters": [
-        "water"
-      ],
-      "phone": "333",
-      "address": "aaaa",
-      "id": 2
-    },
-    {
-      "date": "2020-06-03",
-      "hour": "12:00",
-      "table": [],
-      "ppl": 2,
-      "duration": 2,
-      "starters": [],
-      "phone": "333",
-      "address": "aaaa",
-      "id": 3
-    },
-    {
-      "date": "2020-06-03",
-      "hour": "17:30",
-      "table": [],
-      "ppl": 2,
-      "duration": 2,
-      "starters": [],
-      "phone": "44 55 ",
-      "address": "zz www ",
-      "id": 4
-    },
-    {
-      "date": "2020-06-03",
-      "hour": "16:30",
-      "table": [],
-      "ppl": 2,
-      "duration": 2,
-      "starters": [
-        "water"
-      ],
-      "phone": "44 55 ",
-      "address": "zz www ",
-      "id": 5
     }
   ]
 }
